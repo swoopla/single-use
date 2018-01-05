@@ -30,6 +30,15 @@
 	
 	// The expiration date of the link (examples: +1 year, +5 days, +13 hours)
 	define('EXPIRATION_DATE', '+1 month');
+
+        // Test if secure request or not
+        $isSecure = false;
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+            $isSecure = true;
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+            $isSecure = true;
+        }
+        $REQUEST_PROTOCOL = $isSecure ? 'https' : 'http';
 	
 	// Don't worry about this
 	header("Cache-Control: no-cache, must-revalidate");

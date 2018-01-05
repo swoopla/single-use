@@ -31,7 +31,7 @@
 				$new = uniqid('key',TRUE);
 				
 				// get download link and file size
-				$download_link = "http://" . $_SERVER['HTTP_HOST'] . DOWNLOAD_PATH . "?key=" . $new . "&i=" . $key; 
+				$download_link = $REQUEST_PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . DOWNLOAD_PATH . "?key=" . $new . "&i=" . $key; 
 				$filesize = human_filesize(filesize($download['protected_path']), 2);
 
 				// Add to the download list
